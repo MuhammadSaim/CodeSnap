@@ -1,7 +1,29 @@
 from dotenv import load_dotenv
+from flask_migrate import Migrate
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import MetaData
 
 # load the env file
 load_dotenv()
+
+# DB conventions for the keys
+convention = {
+    "ix": 'ix_%(column_0_label)s',
+    "uq": "uq_%(table_name)s_%(column_0_name)s",
+    "ck": "ck_%(table_name)s_%(column_0_name)s",
+    "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
+    "pk": "pk_%(table_name)s"
+}
+
+# register these keys
+metadata = MetaData(naming_convention=convention)
+
+# initiate the SQLAlchemy and pass the metadata
+db = SQLAlchemy(metadata=metadata)
+
+# initiate the migrate
+migrate = Migrate()
+
 
 # a function load all the applictaion parts
 # plugins, models and blueprints
