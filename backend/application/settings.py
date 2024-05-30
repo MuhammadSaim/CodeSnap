@@ -9,10 +9,19 @@ from application import (
 # register all the blueprints here
 def register_blueprints(app):
     from application.controllers import (
-        test
+        snap
     )
 
-    app.register_blueprint(test.controller)
+    app.register_blueprint(snap.controller)
+
+
+# register all the cli blueprints here
+def register_commands(app):
+    from application.console import (
+        color_themes_seeder
+    )
+
+    app.register_blueprint(color_themes_seeder.controller)
 
 
 # if there is 3rd party plugins will be setup here

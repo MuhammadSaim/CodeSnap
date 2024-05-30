@@ -32,7 +32,8 @@ def create_app():
         initialize_flask_app,
         initialize_plugins,
         import_models,
-        register_blueprints
+        register_blueprints,
+        register_commands
     )
 
     # initialize the flask app
