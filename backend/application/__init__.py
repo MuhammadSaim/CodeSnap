@@ -46,6 +46,9 @@ def create_app():
         # register blueprints
         register_blueprints(app)
 
+        # register commands
+        register_commands(app)
+
         # import models
         import_models()
 

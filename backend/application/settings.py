@@ -18,10 +18,10 @@ def register_blueprints(app):
 # register all the cli blueprints here
 def register_commands(app):
     from application.console import (
-        color_themes_seeder
+        seeders_all
     )
 
-    app.register_blueprint(color_themes_seeder.controller)
+    app.register_blueprint(seeders_all.controller)
 
 
 # if there is 3rd party plugins will be setup here
