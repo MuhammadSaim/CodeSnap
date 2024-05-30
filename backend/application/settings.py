@@ -26,7 +26,8 @@ def initialize_plugins(app):
 def import_models():
     # import database models
     from application.models import (
-        snap
+        snap,
+        theme
     )
 
 
