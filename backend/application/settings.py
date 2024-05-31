@@ -36,7 +36,8 @@ def import_models():
     # import database models
     from application.models import (
         snap,
-        theme
+        theme,
+        language
     )
 
 

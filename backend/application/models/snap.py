@@ -20,6 +20,16 @@ class Snap(db.Model):
         nullable=False,
         
     )
+    
+    language_id = db.Column(
+        db.Integer,
+        db.ForeignKey(
+            'languages.id',
+            ondelete='CASCADE',
+            onupdate='CASCADE'
+        ),
+        nullable=False,   
+    )
 
     unique_code = db.Column(
         db.String(255),
@@ -29,11 +39,6 @@ class Snap(db.Model):
 
     image_base64 = db.Column(
         db.Text,
-        nullable=False,
-    )
-
-    language = db.Column(
-        db.String(255),
         nullable=False,
     )
 
@@ -50,3 +55,4 @@ class Snap(db.Model):
     )
 
     theme = db.relationship('Theme')
+    language = db.relationship('Langauge')
