@@ -55,4 +55,4 @@ class Snap(db.Model):
     )
 
     theme = db.relationship('Theme')
-    language = db.relationship('Langauge')
+    language = db.relationship('Language')

@@ -1,9 +1,25 @@
 from flask import Blueprint, jsonify
+from application.models.snap import Snap
 
 controller = Blueprint('test', __name__)
 
-@controller.route('/snaps', methods=['GET'])
-def index():
+@controller.route('/<unique_id>', methods=['GET'])
+def index(unique_id):
+    
+    # get the snap against unique_code
+    snap = Snap.query.filter_by(unique_code=unique_id).first()
+    
+    # check if snap exists or not
+    if not snap:
+        return jsonify({
+            "message": "Sorry.! snap is not found."
+        }), 404
+    
+    # return the snap records
     return jsonify({
-        'message': 'Working'
-    })
+        "snap" : {
+            "theme": snap.theme.name,
+            "language": snap.language.name,
+            "image": snap.image_base64
+        }
+    }), 200
