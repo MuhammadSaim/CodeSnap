@@ -34,3 +34,14 @@ def generate_unique_id(length=11):
     if check:
         return generate_unique_id()
     return id
+
+# supported languages from 
+def get_supported_languages():
+    
+    return [
+        "Bash", "C", "C#", "C++", "CSS", "Dart", "Elixir", "Erlang", "Fortran", "Go", 
+        "Haskell", "HTML", "Java", "JavaScript", "JSON", "Kotlin", "LaTeX", "Lua", 
+        "Markdown", "MATLAB", "Objective C", "OCaml", "Perl", "PHP", "PowerShell", 
+        "Python", "R", "Ruby", "Rust", "Scala", "Shell", "SQL", "Swift", "Tcl", "TypeScript", 
+        "XML", "YAML"
+    ]
