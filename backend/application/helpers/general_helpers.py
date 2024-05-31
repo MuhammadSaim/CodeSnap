@@ -3,6 +3,7 @@ import base64
 from PIL import Image
 import io
 import random
+from application.models.snap import Snap
 
 
 
@@ -28,6 +29,8 @@ def generate_base64_image(width, height):
 # generate user friendly unique id 
 def generate_unique_id(length=11):
     chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_'
-    chars_len = len(chars)
     id = ''.join(random.choice(chars) for _ in range(length))
+    check = Snap.query.filter_by(unique_code=id).first()
+    if check:
+        return generate_unique_id()
     return id
