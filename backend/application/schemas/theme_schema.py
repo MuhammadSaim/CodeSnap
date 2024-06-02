@@ -9,6 +9,7 @@ class ThemeSchema(marshmallow.SQLAlchemySchema):
         model = Theme
     
     # define the fields
+    id   = marshmallow.auto_field()
     name = marshmallow.auto_field()
 
 # define the single dump

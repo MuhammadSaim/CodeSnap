@@ -11,11 +11,13 @@ from application import (
 def register_blueprints(app):
     from application.controllers import (
         snap,
-        language
+        language,
+        theme
     )
 
     app.register_blueprint(snap.controller)
     app.register_blueprint(language.controller)
+    app.register_blueprint(theme.controller)
 
 
 # register all the cli blueprints here
@@ -48,7 +50,9 @@ def import_models():
 def import_schemas():
     # import marshmallow schemas
     from application.schemas import (
-        snap_schema
+        snap_schema,
+        language_schema,
+        theme_schema
     )
 
 
