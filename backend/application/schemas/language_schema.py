@@ -9,6 +9,7 @@ class LanguageSchema(marshmallow.SQLAlchemySchema):
         model = Language
     
     # define the exposing field
+    id   = marshmallow.auto_field()
     name = marshmallow.auto_field()
     
 

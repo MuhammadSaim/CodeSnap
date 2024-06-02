@@ -10,10 +10,12 @@ from application import (
 # register all the blueprints here
 def register_blueprints(app):
     from application.controllers import (
-        snap
+        snap,
+        language
     )
 
     app.register_blueprint(snap.controller)
+    app.register_blueprint(language.controller)
 
 
 # register all the cli blueprints here
