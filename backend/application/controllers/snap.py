@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify
 from application.models.snap import Snap
 
 # initiate the blueprint
-controller = Blueprint('test', __name__)
+controller = Blueprint('test', __name__, url_prefix='/api/v1')
 
 # make route on that blue print 
 @controller.route('/<unique_id>', methods=['GET'])
