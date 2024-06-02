@@ -1,8 +1,10 @@
 from flask import Blueprint, jsonify
 from application.models.snap import Snap
 
+# initiate the blueprint
 controller = Blueprint('test', __name__)
 
+# make route on that blue print 
 @controller.route('/<unique_id>', methods=['GET'])
 def index(unique_id):
     

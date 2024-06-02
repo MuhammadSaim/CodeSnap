@@ -5,8 +5,7 @@ import io
 import random
 from application.models.snap import Snap
 
-
-
+# initiate faker
 faker = Faker()
 
 # Generate a fake image using Pillow (Python Imaging Library)

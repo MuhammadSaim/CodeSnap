@@ -1,6 +1,7 @@
 from application import db
 
 
+# define the theme model
 class Theme(db.Model):
 
     __tablename__ = "themes"

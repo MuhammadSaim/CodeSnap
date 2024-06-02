@@ -1,6 +1,7 @@
 from application import db
 
 
+# define the Snap model
 class Snap(db.Model):
 
     __tablename__ = 'snaps'

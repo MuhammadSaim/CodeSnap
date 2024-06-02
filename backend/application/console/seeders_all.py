@@ -11,9 +11,10 @@ from application.helpers.general_helpers import (
         get_supported_languages
     )
 
+# initiate the bluerint
 controller = Blueprint("seeders", __name__)
 
-
+# initialize the command
 @controller.cli.command("all")
 def seeders_all():
     clear_all_tables()

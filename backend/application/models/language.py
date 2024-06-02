@@ -1,5 +1,6 @@
 from application import db
 
+# define the Language model class
 class Language(db.Model):
     
     __tablename__ = 'languages'
