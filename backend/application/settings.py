@@ -2,7 +2,8 @@ from flask import Flask
 
 from application import (
     db,
-    migrate
+    migrate,
+    marshmallow
 )
 
 
@@ -29,6 +30,7 @@ def initialize_plugins(app):
     # Initialize Plugins
     db.init_app(app)
     migrate.init_app(app, db)
+    marshmallow.init_app(app)
 
 
 # import all the models here
@@ -38,6 +40,13 @@ def import_models():
         language,
         theme,
         snap,
+    )
+    
+# import all the schemas here
+def import_schemas():
+    # import marshmallow schemas
+    from application.schemas import (
+        snap_schema
     )
 
 

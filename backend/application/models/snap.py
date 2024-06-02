@@ -1,4 +1,6 @@
 from application import db
+from application.models.theme import Theme
+from application.models.language import Language
 
 
 # define the Snap model
@@ -55,5 +57,5 @@ class Snap(db.Model):
         nullable=False
     )
 
-    theme = db.relationship('Theme')
-    language = db.relationship('Language')
+    theme = db.relationship(Theme)
+    language = db.relationship(Language)

@@ -1,11 +1,12 @@
 from flask import Blueprint, jsonify
 from application.models.snap import Snap
+from application.schemas.snap_schema import singular_snap_schema
 
 # initiate the blueprint
 controller = Blueprint('test', __name__, url_prefix='/api/v1')
 
 # make route on that blue print 
-@controller.route('/<unique_id>', methods=['GET'])
+@controller.route('/<string:unique_id>', methods=['GET'])
 def index(unique_id):
     
     # get the snap against unique_code
@@ -18,10 +19,4 @@ def index(unique_id):
         }), 404
     
     # return the snap records
-    return jsonify({
-        "snap" : {
-            "theme": snap.theme.name,
-            "language": snap.language.name,
-            "image": snap.image_base64
-        }
-    }), 200
+    return singular_snap_schema.dump(snap), 200

@@ -2,6 +2,7 @@ from dotenv import load_dotenv
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
+from flask_marshmallow import Marshmallow
 
 # load the env file
 load_dotenv()
@@ -24,6 +25,9 @@ db = SQLAlchemy(metadata=metadata)
 # initiate the migrate
 migrate = Migrate()
 
+# initiate marshmallow
+marshmallow = Marshmallow()
+
 
 # a function load all the applictaion parts
 # plugins, models and blueprints
@@ -33,7 +37,8 @@ def create_app():
         initialize_plugins,
         import_models,
         register_blueprints,
-        register_commands
+        register_commands,
+        import_schemas
     )
 
     # initialize the flask app
@@ -51,5 +56,8 @@ def create_app():
 
         # import models
         import_models()
+        
+        # import schemas
+        import_schemas()
 
         return app
