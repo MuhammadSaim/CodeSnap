@@ -10,7 +10,7 @@ controller = Blueprint('snap', __name__, url_prefix='/api/v1')
 def index(unique_id):
     
     # get the snap against unique_code
-    snap = Snap.query.filter_by(unique_code=unique_id).first()
+    snap = Snap.get_by_id(unique_id)
     
     # check if snap exists or not
     if not snap:

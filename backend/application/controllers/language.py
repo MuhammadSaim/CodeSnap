@@ -10,7 +10,7 @@ controller = Blueprint('language', __name__, url_prefix='/api/v1')
 def index():
     
     # get all the languages from DB
-    languages = Language.query.all()
+    languages = Language.get_all()
     
     return multiple_language_schema.dump(languages), 200
     

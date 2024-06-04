@@ -28,3 +28,13 @@ class Theme(db.Model):
         default=db.func.now(),
         nullable=True
     )
+    
+    # class method for getting all the records
+    @classmethod
+    def get_all(cls):
+        return cls.query.all()
+    
+    # class method for find by id
+    @classmethod
+    def get_by_id(cls, id):
+        return cls.query.filter_by(id=id).first()

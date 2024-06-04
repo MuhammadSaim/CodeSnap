@@ -59,3 +59,13 @@ class Snap(db.Model):
 
     theme = db.relationship(Theme)
     language = db.relationship(Language)
+    
+    # class method for getting all the records
+    @classmethod
+    def get_all(cls):
+        return cls.query.all()
+    
+    # class method for find by id
+    @classmethod
+    def get_by_id(cls, code):
+        return cls.query.filter_by(unique_code=code).first()

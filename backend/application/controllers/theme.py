@@ -10,7 +10,7 @@ controller = Blueprint('theme', __name__, url_prefix='/api/v1')
 def index():
     
     # get all the languages from DB
-    themes = Theme.query.all()
+    themes = Theme.get_all()
     
     return multiple_theme_Schema.dump(themes), 200
     
