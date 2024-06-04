@@ -1,16 +1,12 @@
 from flask import Blueprint
-from application.models.theme import Theme
-from application.schemas.theme_schema import multiple_theme_Schema
+from flask_restful import Api
+from application.resources.theme_list import ThemeListResource
 
 # initiate the blueprint
 controller = Blueprint('theme', __name__, url_prefix='/api/v1')
 
-# make route on the blueprint
-@controller.route('/themes', methods=['GET'])
-def index():
-    
-    # get all the languages from DB
-    themes = Theme.get_all()
-    
-    return multiple_theme_Schema.dump(themes), 200
-    
+# init flask resfull
+api  = Api(controller)
+
+# add resource to the api
+api.add_resource(ThemeListResource, '/themes')

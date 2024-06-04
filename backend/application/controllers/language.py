@@ -1,16 +1,13 @@
 from flask import Blueprint
-from application.models.language import Language
-from application.schemas.language_schema import multiple_language_schema
+from application.resources.language_list import LanguageListResource
+from flask_restful import Api
 
 # initiate the blueprint
 controller = Blueprint('language', __name__, url_prefix='/api/v1')
 
-# make route on the blueprint
-@controller.route('/languages', methods=['GET'])
-def index():
-    
-    # get all the languages from DB
-    languages = Language.get_all()
-    
-    return multiple_language_schema.dump(languages), 200
+# initiate the api
+api = Api(controller)
+
+# add resources to the api
+api.add_resource(LanguageListResource, '/languages')
     

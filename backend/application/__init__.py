@@ -38,7 +38,8 @@ def create_app():
         import_models,
         register_blueprints,
         register_commands,
-        import_schemas
+        import_schemas,
+        import_resources
     )
 
     # initialize the flask app
@@ -59,5 +60,8 @@ def create_app():
         
         # import schemas
         import_schemas()
+        
+        # import resources
+        import_resources()
 
         return app

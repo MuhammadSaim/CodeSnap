@@ -56,6 +56,14 @@ def import_schemas():
     )
 
 
+# import all the resources here
+def import_resources():
+    # import flask restfull resources
+    from application.resources import (
+        theme_list
+    )
+
+
 # initialize the flask app and setup the configs
 def initialize_flask_app():
     # Initialize the core application.
