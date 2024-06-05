@@ -1,5 +1,7 @@
 # CodeSnap Backend
 
+This repository contains the backend code for the CodeSnap project. The backend is built using [Flask](https://flask.palletsprojects.com/), a lightweight WSGI web application framework in Python.
+
 ## Requirements
 - Python
 - Flask
