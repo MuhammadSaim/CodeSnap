@@ -1,9 +1,11 @@
 from flask import Flask
+from config import Config
 
 from application import (
     db,
     migrate,
-    marshmallow
+    marshmallow,
+    cors
 )
 
 
@@ -35,6 +37,7 @@ def initialize_plugins(app):
     db.init_app(app)
     migrate.init_app(app, db)
     marshmallow.init_app(app)
+    cors.init_app(app, origins=Config.ALLOWED_ORIGINS.split(','))
 
 
 # import all the models here

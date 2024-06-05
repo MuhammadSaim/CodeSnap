@@ -9,6 +9,8 @@ class Config:
     FLASK_DEBUG = environ.get('FLASK_DEBUG')
 
     BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+    
+    ALLOWED_ORIGINS = environ.get('ALLOWED_ORIGINS')
 
     # Flask-SQLAlchemy
     SQLALCHEMY_DATABASE_URI = environ.get('SQLALCHEMY_DATABASE_URI')

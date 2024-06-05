@@ -3,6 +3,7 @@ from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
 from flask_marshmallow import Marshmallow
+from flask_cors import CORS
 
 # load the env file
 load_dotenv()
@@ -27,6 +28,9 @@ migrate = Migrate()
 
 # initiate marshmallow
 marshmallow = Marshmallow()
+
+# initiate cors
+cors = CORS()
 
 
 # a function load all the applictaion parts
