@@ -4,6 +4,7 @@ blinker==1.8.2
 click==8.1.7
 Faker==25.3.0
 Flask==3.0.3
+Flask-Cors==4.0.1
 flask-marshmallow==1.2.1
 Flask-Migrate==4.0.7
 Flask-RESTful==0.3.10
