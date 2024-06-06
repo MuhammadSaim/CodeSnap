@@ -3,6 +3,7 @@ import base64
 from PIL import Image
 import io
 import random
+import re
 
 # initiate faker
 faker = Faker()
@@ -43,3 +44,21 @@ def get_supported_languages():
         "Python", "R", "Ruby", "Rust", "Scala", "Shell", "SQL", "Swift", "Tcl", "TypeScript", 
         "XML", "YAML"
     ]
+
+# validateing the base64 image
+def is_base64_image(value):
+    # Check if value is a valid base64 string
+    try:
+        if isinstance(value, str) and re.match(r'^data:image/.+;base64,', value):
+            base64_str = value.split(',')[1]
+            base64.b64decode(base64_str)
+        else:
+            base64.b64decode(value)
+        return True
+    except (ValueError, base64.binascii.Error):
+        return False
+
+# validator for the Schema
+def validate_base64_image(value):
+    if not is_base64_image(value):
+        raise ValueError("Invalid base64 image")

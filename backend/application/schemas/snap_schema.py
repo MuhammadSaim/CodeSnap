@@ -1,6 +1,7 @@
 from marshmallow_sqlalchemy import SQLAlchemySchema
 from application.models.snap import Snap
-from marshmallow import fields
+from marshmallow import fields, validates, ValidationError
+from application.helpers.general_helpers import validate_base64_image
 
 # define the schema for the class
 class SnapSchema(SQLAlchemySchema):
@@ -26,6 +27,11 @@ class SnapSchema(SQLAlchemySchema):
     # get the theme name
     def get_the_theme(self, obj):
         return obj.theme.name if obj.theme else None
+    
+    @validates('snap')
+    def validate_snap(self, value):
+        if not validate_base64_image(value):
+            raise ValidationError("Invalid base64 image string.")
     
 
 # define for single dump
