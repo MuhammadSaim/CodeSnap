@@ -1,16 +1,17 @@
 from application.models.language import Language
-from application import marshmallow
+from marshmallow import fields
+from marshmallow_sqlalchemy import SQLAlchemySchema
 
 # define the Langauge schema
-class LanguageSchema(marshmallow.SQLAlchemySchema):
+class LanguageSchema(SQLAlchemySchema):
     
     # define the meta and register the model
     class Meta:
         model = Language
     
     # define the exposing field
-    id   = marshmallow.auto_field()
-    name = marshmallow.auto_field()
+    id   = fields.Integer()
+    name = fields.Str(required=True)
     
 
 # define the single dump 

@@ -1,6 +1,8 @@
 from application import db
 from application.models.theme import Theme
 from application.models.language import Language
+from application.helpers.general_helpers import generate_unique_id
+from application import db
 
 
 # define the Snap model
@@ -69,3 +71,16 @@ class Snap(db.Model):
     @classmethod
     def get_by_id(cls, code):
         return cls.query.filter_by(unique_code=code).first()
+    
+    @classmethod
+    def create(cls, snap, language, theme):
+        unique_id = generate_unique_id(model=cls)
+        new_snap = cls(
+            unique_id=unique_id,
+            image_base64=snap,
+            language_id=language.id,
+            theme_id=theme.id
+        )
+        db.session.add(new_snap)
+        db.session.commit()
+        return new_snap

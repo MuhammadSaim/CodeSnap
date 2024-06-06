@@ -1,16 +1,17 @@
 from application.models.theme import Theme
-from application import marshmallow
+from marshmallow import fields
+from marshmallow_sqlalchemy import SQLAlchemySchema
 
 # define the theme scheam
-class ThemeSchema(marshmallow.SQLAlchemySchema):
+class ThemeSchema(SQLAlchemySchema):
     
     # define the meta class
     class Meta:
         model = Theme
     
     # define the fields
-    id   = marshmallow.auto_field()
-    name = marshmallow.auto_field()
+    id   = fields.Integer()
+    name = fields.Str(required=True)
 
 # define the single dump
 singular_theme_schema = ThemeSchema()

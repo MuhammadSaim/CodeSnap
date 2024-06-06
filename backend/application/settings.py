@@ -63,7 +63,10 @@ def import_schemas():
 def import_resources():
     # import flask restfull resources
     from application.resources import (
-        theme_list
+        theme_list,
+        snap_list,
+        snap,
+        language_list
     )
 
 

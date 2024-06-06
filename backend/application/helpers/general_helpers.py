@@ -3,7 +3,6 @@ import base64
 from PIL import Image
 import io
 import random
-from application.models.snap import Snap
 
 # initiate faker
 faker = Faker()
@@ -26,10 +25,10 @@ def generate_base64_image(width, height):
     return base64_image
 
 # generate user friendly unique id 
-def generate_unique_id(length=11):
+def generate_unique_id(model, length=11):
     chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_'
     id = ''.join(random.choice(chars) for _ in range(length))
-    check = Snap.query.filter_by(unique_code=id).first()
+    check = model.query.filter_by(unique_code=id).first()
     if check:
         return generate_unique_id()
     return id
