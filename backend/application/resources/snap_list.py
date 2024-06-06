@@ -24,7 +24,7 @@ class SnapListResource(Resource):
             snap_data = singular_snap_schema.load(json_data)
         except ValidationError as err:
             return err.messages, 422
-        
+    
         # validate the language 
         lang = Language.get_by_id(snap_data['language_id'])
         if not lang:
@@ -35,11 +35,10 @@ class SnapListResource(Resource):
         if not theme:
             return {"message": "Invalid theme_id"}, 400
         
-        print(snap_data)
         
         # create a snap
         new_snap = Snap.create(
-            snap=snap_data['snap'],
+            snap=snap_data['image_base64'],
             language=lang,
             theme=theme
         )

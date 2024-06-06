@@ -76,7 +76,7 @@ class Snap(db.Model):
     def create(cls, snap, language, theme):
         unique_id = generate_unique_id(model=cls)
         new_snap = cls(
-            unique_id=unique_id,
+            unique_code=unique_id,
             image_base64=snap,
             language_id=language.id,
             theme_id=theme.id
@@ -84,3 +84,4 @@ class Snap(db.Model):
         db.session.add(new_snap)
         db.session.commit()
         return new_snap
+    

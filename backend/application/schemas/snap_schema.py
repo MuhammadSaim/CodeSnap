@@ -9,11 +9,10 @@ class SnapSchema(SQLAlchemySchema):
     class Meta:
         model = Snap
         ordered = True
-        # fields = ('unique_code', 'image_base64', 'language_id', 'theme_id', 'created_at')
     
     # define fields
     unique_code     = fields.String(attribute='unique_code', data_key='id', dump_only=True)
-    image_base64    = fields.String(data_key='snap', required=True)
+    snap            = fields.String(attribute="image_base64", data_key='snap', required=True)
     language_id     = fields.Integer(required=True, load_only=True)
     theme_id        = fields.Integer(required=True, load_only=True)
     language        = fields.Method('get_the_language', dump_only=True)
