@@ -43,7 +43,7 @@ def snaps_seeder():
         snap = Snap(
             theme_id=theme.id,
             language_id=language.id,
-            unique_code=generate_unique_id(),
+            unique_code=generate_unique_id(model=Snap),
             image_base64=generate_base64_image(600, 400),
         )
         db.session.add(snap)
