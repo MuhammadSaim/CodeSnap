@@ -5,6 +5,9 @@ from application.models.language import Language
 from application.models.theme import Theme
 from application.schemas.snap_schema import singular_snap_schema
 from marshmallow import ValidationError
+from application.helpers.general_helpers import (
+    base64_file
+)
 
 # define the ThemeListResource
 class SnapListResource(Resource):
@@ -36,9 +39,12 @@ class SnapListResource(Resource):
             return {"message": "Invalid theme_id"}, 400
         
         
+        filepath = base64_file(snap_data['image_base64'])
+        
+        
         # create a snap
         new_snap = Snap.create(
-            snap=snap_data['image_base64'],
+            snap=filepath,
             language=lang,
             theme=theme
         )

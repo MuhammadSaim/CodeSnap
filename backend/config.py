@@ -15,3 +15,8 @@ class Config:
     # Flask-SQLAlchemy
     SQLALCHEMY_DATABASE_URI = environ.get('SQLALCHEMY_DATABASE_URI')
     SQLALCHEMY_TRACK_MODIFICATIONS = bool(environ.get('SQLALCHEMY_TRACK_MODIFICATIONS'))
+    
+    # Static Assets
+    STATIC_FOLDER_PATH = environ.get('STATIC_FOLDER_PATH')
+    STATIC_FOLDER = environ.get('STATIC_FOLDER')
+    UPLOAD_FOLDER = environ.get('UPLOAD_FOLDER')

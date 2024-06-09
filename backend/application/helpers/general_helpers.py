@@ -4,6 +4,10 @@ from PIL import Image
 import io
 import random
 import re
+import hashlib
+import uuid
+from datetime import datetime
+from config import Config
 
 # initiate faker
 faker = Faker()
@@ -49,12 +53,14 @@ def get_supported_languages():
 def is_base64_image(value):
     # Check if value is a valid base64 string
     try:
-        if isinstance(value, str) and re.match(r'^data:image/.+;base64,', value):
-            base64_str = value.split(',')[1]
-            base64.b64decode(base64_str)
-        else:
-            base64.b64decode(value)
-        return True
+        base64_pattern = re.compile(r'^[A-Za-z0-9+/]*={0,2}$')
+        if len(value) % 4 != 0 or not base64_pattern.match(value):
+            return False
+        try:
+            base64.b64decode(value, validate=True)
+            return True
+        except Exception:
+            return False
     except (ValueError, base64.binascii.Error):
         return False
 
@@ -62,3 +68,32 @@ def is_base64_image(value):
 def validate_base64_image(value):
     if not is_base64_image(value):
         raise ValueError("Invalid base64 image")
+    
+    
+# generate secure filename
+def generate_secure_filename(type = '.png'):
+    # Create a unique identifier
+    unique_id = uuid.uuid4().hex
+
+    # Create a hash of the filename and current timestamp
+    hash_digest = hashlib.sha256((unique_id + str(datetime.now().timestamp())).encode()).hexdigest()
+    
+    # Construct the new secure filename
+    secure_name = f"{hash_digest}{type}"
+    return secure_name
+    
+
+def base64_file(base64_str):
+    
+    # Assuming base64_str is the string value without 'data:image/jpeg;base64,'
+    img = Image.open(io.BytesIO(base64.decodebytes(bytes(base64_str, "utf-8"))))
+    
+    new_filename = generate_secure_filename()
+    
+    file_path = f"{Config.UPLOAD_FOLDER}/{new_filename}"
+    
+    filepath_to_save = f"assets/uploads/snaps/{new_filename}"
+    
+    img.save(file_path, quality=100, subsampling=0)
+    
+    return filepath_to_save
