@@ -37,13 +37,13 @@ class Snap(db.Model):
     )
 
     unique_code = db.Column(
-        db.String(255),
+        db.String(20),
         unique=True,
         nullable=False
     )
 
-    image_base64 = db.Column(
-        db.Text,
+    snap = db.Column(
+        db.String(255),
         nullable=False,
     )
 
@@ -77,7 +77,7 @@ class Snap(db.Model):
         unique_id = generate_unique_id(model=cls)
         new_snap = cls(
             unique_code=unique_id,
-            image_base64=snap,
+            snap=snap,
             language_id=language.id,
             theme_id=theme.id
         )
