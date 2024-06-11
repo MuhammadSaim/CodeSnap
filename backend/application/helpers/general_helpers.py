@@ -24,10 +24,10 @@ def pil_image_to_base64(image):
     return base64.b64encode(buffered.getvalue()).decode('utf-8')
 
 # Generate a fake image and convert it to base64
-def generate_base64_image(width, height):
+def generate_image(width, height):
     fake_image = generate_fake_image(width, height)
     base64_image = pil_image_to_base64(fake_image)
-    return base64_image
+    return base64_file(base64_image)
 
 # generate user friendly unique id 
 def generate_unique_id(model, length=11):

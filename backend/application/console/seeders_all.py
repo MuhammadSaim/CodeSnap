@@ -6,7 +6,7 @@ from application.models.snap import Snap
 from application.models.language import Language
 from sqlalchemy.sql.expression import func
 from application.helpers.general_helpers import (
-        generate_base64_image, 
+        generate_image, 
         generate_unique_id,
         get_supported_languages
     )
@@ -44,7 +44,7 @@ def snaps_seeder():
             theme_id=theme.id,
             language_id=language.id,
             unique_code=generate_unique_id(model=Snap),
-            image_base64=generate_base64_image(600, 400),
+            snap=generate_image(600, 400),
         )
         db.session.add(snap)
     db.session.commit()
