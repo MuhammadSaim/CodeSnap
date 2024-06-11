@@ -32,7 +32,7 @@ class SnapSchema(SQLAlchemySchema):
     
     # get the save 
     def get_the_snap_url(self, obj):
-        return url_for('static', filename=obj.snap, _external=True)
+        return url_for('image.image_resource', type='snap', unique_id=obj.unique_code, _external=True)
     
     # validate the base64
     @validates('snap')

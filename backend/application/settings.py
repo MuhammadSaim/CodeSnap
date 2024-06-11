@@ -14,12 +14,14 @@ def register_blueprints(app):
     from application.controllers import (
         snap,
         language,
-        theme
+        theme,
+        image
     )
 
     app.register_blueprint(snap.controller)
     app.register_blueprint(language.controller)
     app.register_blueprint(theme.controller)
+    app.register_blueprint(image.controller)
 
 
 # register all the cli blueprints here
@@ -66,7 +68,8 @@ def import_resources():
         theme_list,
         snap_list,
         snap,
-        language_list
+        language_list,
+        image
     )
 
 
