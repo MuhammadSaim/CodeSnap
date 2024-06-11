@@ -14,7 +14,7 @@ class SnapSchema(SQLAlchemySchema):
     
     # define fields
     unique_code     = fields.String(attribute='unique_code', data_key='id', dump_only=True)
-    snap            = fields.String(attribute="image_base64", required=True, load_only=True)
+    snap            = fields.String(required=True, load_only=True)
     language_id     = fields.Integer(required=True, load_only=True)
     theme_id        = fields.Integer(required=True, load_only=True)
     language        = fields.Method('get_the_language', dump_only=True)
@@ -32,7 +32,7 @@ class SnapSchema(SQLAlchemySchema):
     
     # get the save 
     def get_the_snap_url(self, obj):
-        return url_for('static', filename=obj.image_base64, _external=True)
+        return url_for('static', filename=obj.snap, _external=True)
     
     # validate the base64
     @validates('snap')

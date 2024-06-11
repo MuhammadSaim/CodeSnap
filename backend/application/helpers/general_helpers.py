@@ -68,6 +68,7 @@ def is_base64_image(value):
 def validate_base64_image(value):
     if not is_base64_image(value):
         raise ValueError("Invalid base64 image")
+    return True
     
     
 # generate secure filename
@@ -92,8 +93,6 @@ def base64_file(base64_str):
     
     file_path = f"{Config.UPLOAD_FOLDER}/{new_filename}"
     
-    filepath_to_save = f"assets/uploads/snaps/{new_filename}"
-    
     img.save(file_path, quality=100, subsampling=0)
     
-    return filepath_to_save
+    return file_path

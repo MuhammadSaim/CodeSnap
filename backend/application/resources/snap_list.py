@@ -39,7 +39,7 @@ class SnapListResource(Resource):
             return {"message": "Invalid theme_id"}, 400
         
         
-        filepath = base64_file(snap_data['image_base64'])
+        filepath = base64_file(snap_data['snap'])
         
         
         # create a snap
