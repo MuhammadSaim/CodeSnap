@@ -10,6 +10,9 @@ from application.helpers.general_helpers import (
         generate_unique_id,
         get_supported_languages
     )
+from config import Config
+from pathlib import Path
+import os
 
 # initiate the bluerint
 controller = Blueprint("seeders", __name__)
@@ -60,6 +63,14 @@ def language_seeder():
     db.session.commit()
     
 
+# remove all the snap images from the directory
+def remove_snaps_in_dir():
+    for f in Path(os.path.join(Config.BASE_DIR, Config.UPLOAD_FOLDER)).glob('*.png'):
+        try:
+            f.unlink()
+        except OSError as e:
+            print("Error: %s : %s" % (f, e.strerror))
+
 # clear all the tables
 def clear_all_tables():
     print("Deleting Language table data.\n")
@@ -69,4 +80,5 @@ def clear_all_tables():
     print("Deleting Snap table data.\n")
     db.session.query(Snap).delete()
     db.session.commit()
+    remove_snaps_in_dir()
     
