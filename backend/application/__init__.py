@@ -35,7 +35,7 @@ cors = CORS()
 
 # a function load all the applictaion parts
 # plugins, models and blueprints
-def create_app():
+def create_app(config_class='Config'):
     from application.settings import (
         initialize_flask_app,
         initialize_plugins,
@@ -47,7 +47,7 @@ def create_app():
     )
 
     # initialize the flask app
-    app = initialize_flask_app()
+    app = initialize_flask_app(config_class)
 
     with app.app_context():
         # initialize plugins

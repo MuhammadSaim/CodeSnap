@@ -2,6 +2,7 @@ import os
 from os import environ
 
 
+# Config for the production app 
 class Config:
     # General Config
     SECRET_KEY = environ.get('SECRET_KEY')
@@ -20,3 +21,13 @@ class Config:
     STATIC_FOLDER_PATH = environ.get('STATIC_FOLDER_PATH')
     STATIC_FOLDER = environ.get('STATIC_FOLDER')
     UPLOAD_FOLDER = environ.get('UPLOAD_FOLDER')
+    
+
+# Config for the Test environment
+class TestConfig(Config):
+    
+    TESTING = True
+    
+    # Flask-SQLAlchemy
+    SQLALCHEMY_DATABASE_URI = environ.get('TEST_SQLALCHEMY_DATABASE_URI')
+    

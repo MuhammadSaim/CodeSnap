@@ -74,11 +74,11 @@ def import_resources():
 
 
 # initialize the flask app and setup the configs
-def initialize_flask_app():
+def initialize_flask_app(config_class):
     # Initialize the core application.
     app = Flask(
         __name__,
         instance_relative_config=False
     )
-    app.config.from_object('config.Config')
+    app.config.from_object(f'config.{config_class}')
     return app
