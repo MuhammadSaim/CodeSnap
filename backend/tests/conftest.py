@@ -1,7 +1,7 @@
 import pytest
 from application import create_app, db
 from application.console.seeders_all import (
-    seeders_all,
+    run_seeder,
     clear_all_tables
 )
 
@@ -26,15 +26,21 @@ def test_client():
 
 @pytest.fixture(scope='module')
 def init_database():
-    # Create the database and the database table
-    db.create_all()
+    
+    with create_app('TestConfig').app_context():
+    
+        # Create the database and the database table
+        db.create_all()
 
-    # run the seeders to the test db
-    seeders_all()
+        try:
+            # run the seeders to the test db
+            run_seeder()
+        except Exception as e:
+            print(f"Error in seeders_all: {e}")
 
-    yield db  # This is where the testing happens!
+        yield db  # This is where the testing happens!
 
-    # clear images in the directory and remove data from the table
-    clear_all_tables()
+        # clear images in the directory and remove data from the table
+        clear_all_tables()
 
-    db.drop_all()
+        db.drop_all()

@@ -20,10 +20,7 @@ controller = Blueprint("seeders", __name__)
 # initialize the command
 @controller.cli.command("all")
 def seeders_all():
-    clear_all_tables()
-    language_seeder()
-    theme_seeder()
-    snaps_seeder()
+    run_seeder()
 
 
 # theme seeder insert all the supported themes
@@ -83,4 +80,11 @@ def clear_all_tables():
     print("Deleting Snap table data.\n")
     db.session.query(Snap).delete()
     db.session.commit()
+    
+    
+def run_seeder():
+    clear_all_tables()
+    language_seeder()
+    theme_seeder()
+    snaps_seeder()
     
