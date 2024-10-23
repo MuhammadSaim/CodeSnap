@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
 from flask_marshmallow import Marshmallow
 from flask_cors import CORS
+from flask_jwt_extended import JWTManager
 
 # load the env file
 load_dotenv()
@@ -31,6 +32,9 @@ marshmallow = Marshmallow()
 
 # initiate cors
 cors = CORS()
+
+# initiate JWT
+jwt = JWTManager()
 
 
 # a function load all the applictaion parts

@@ -15,6 +15,16 @@ class Snap(db.Model):
         primary_key=True
     )
 
+    user_id = db.Column(
+        db.Integer,
+        db.ForeignKey(
+            'users.id',
+            ondelete='CASCADE',
+            onupdate='CASCADE'
+        ),
+        nullable=True,
+    )
+
     theme_id = db.Column(
         db.Integer,
         db.ForeignKey(
@@ -23,9 +33,9 @@ class Snap(db.Model):
             onupdate='CASCADE'
         ),
         nullable=False,
-        
+
     )
-    
+
     language_id = db.Column(
         db.Integer,
         db.ForeignKey(
@@ -33,7 +43,7 @@ class Snap(db.Model):
             ondelete='CASCADE',
             onupdate='CASCADE'
         ),
-        nullable=False,   
+        nullable=False,
     )
 
     unique_code = db.Column(
@@ -61,17 +71,17 @@ class Snap(db.Model):
 
     theme = db.relationship(Theme)
     language = db.relationship(Language)
-    
+
     # class method for getting all the records
     @classmethod
     def get_all(cls):
         return cls.query.all()
-    
+
     # class method for find by id
     @classmethod
     def get_by_id(cls, code):
         return cls.query.filter_by(unique_code=code).first()
-    
+
     @classmethod
     def create(cls, snap, language, theme):
         unique_id = generate_unique_id(model=cls)
@@ -84,4 +94,3 @@ class Snap(db.Model):
         db.session.add(new_snap)
         db.session.commit()
         return new_snap
-    

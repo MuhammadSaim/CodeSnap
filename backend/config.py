@@ -1,5 +1,6 @@
 import os
 from os import environ
+from datetime import timedelta
 
 
 # Config for the production app 
@@ -21,6 +22,25 @@ class Config:
     STATIC_FOLDER_PATH = environ.get('STATIC_FOLDER_PATH')
     STATIC_FOLDER = environ.get('STATIC_FOLDER')
     UPLOAD_FOLDER = environ.get('UPLOAD_FOLDER')
+    
+    
+    
+    # JWT configs
+    
+    access_token_expires = environ.get('JWT_ACCESS_TOKEN_EXPIRES')
+    refresh_token_expires = environ.get('JWT_REFRESH_TOKEN_EXPIRES')
+    
+    JWT_SECRET_KEY = environ.get('JWT_SECRET_KEY')
+    JWT_ACCESS_TOKEN_EXPIRES = timedelta(
+        hours=int(
+            access_token_expires
+        ) if access_token_expires is not None else 1
+    )
+    JWT_REFRESH_TOKEN_EXPIRES = timedelta(
+        days=float(
+            refresh_token_expires
+        ) if refresh_token_expires is not None else 30
+    )
     
 
 # Config for the Test environment

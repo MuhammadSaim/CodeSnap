@@ -5,7 +5,8 @@ from application import (
     db,
     migrate,
     marshmallow,
-    cors
+    cors,
+    jwt
 )
 
 
@@ -15,13 +16,15 @@ def register_blueprints(app):
         snap,
         language,
         theme,
-        image
+        image,
+        auth
     )
 
     app.register_blueprint(snap.controller)
     app.register_blueprint(language.controller)
     app.register_blueprint(theme.controller)
     app.register_blueprint(image.controller)
+    app.register_blueprint(auth.controller)
 
 
 # register all the cli blueprints here
@@ -40,6 +43,7 @@ def initialize_plugins(app):
     migrate.init_app(app, db)
     marshmallow.init_app(app)
     cors.init_app(app, origins=Config.ALLOWED_ORIGINS.split(','))
+    jwt.init_app(app)
 
 
 # import all the models here
@@ -49,8 +53,10 @@ def import_models():
         language,
         theme,
         snap,
+        user,
+        jwt_blocked_token
     )
-    
+
 # import all the schemas here
 def import_schemas():
     # import marshmallow schemas
@@ -69,7 +75,8 @@ def import_resources():
         snap_list,
         snap,
         language_list,
-        image
+        image,
+        auth
     )
 
 
