@@ -1,8 +1,8 @@
-"""update db structure
+"""initial structure
 
-Revision ID: 31eccf070933
+Revision ID: 06958cf23f5d
 Revises: 
-Create Date: 2024-10-23 07:54:34.728466
+Create Date: 2024-10-28 12:32:45.983038
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '31eccf070933'
+revision = '06958cf23f5d'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -24,6 +24,12 @@ def upgrade():
     sa.Column('created_at', sa.DateTime(), server_default=sa.text('now()'), nullable=False),
     sa.Column('updated_at', sa.DateTime(), server_default=sa.text('now()'), nullable=False),
     sa.PrimaryKeyConstraint('id', name=op.f('pk_languages'))
+    )
+    op.create_table('password_reset_tokens',
+    sa.Column('email', sa.String(length=255), nullable=False),
+    sa.Column('token', sa.String(length=255), nullable=True),
+    sa.Column('created_at', sa.DateTime(), nullable=True),
+    sa.PrimaryKeyConstraint('email', name=op.f('pk_password_reset_tokens'))
     )
     op.create_table('themes',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -39,6 +45,8 @@ def upgrade():
     sa.Column('username', sa.String(length=255), nullable=False),
     sa.Column('name', sa.String(length=255), nullable=False),
     sa.Column('email', sa.String(length=255), nullable=False),
+    sa.Column('email_verified_at', sa.DateTime(), nullable=True),
+    sa.Column('remember_token', sa.String(length=255), nullable=True),
     sa.Column('password', sa.String(length=255), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
@@ -87,5 +95,6 @@ def downgrade():
     op.drop_table('jwt_blocked_tokens')
     op.drop_table('users')
     op.drop_table('themes')
+    op.drop_table('password_reset_tokens')
     op.drop_table('languages')
     # ### end Alembic commands ###

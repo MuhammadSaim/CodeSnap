@@ -10,6 +10,8 @@ from datetime import datetime
 from config import Config
 import bcrypt
 from typing import Type, Tuple
+import string
+from flask import jsonify
 from application import (
     db,
     jwt
@@ -220,3 +222,60 @@ def get_uuid_for_user() -> str:
         return get_uuid_for_user()
 
     return str(uuid4)
+
+
+# Register a callback function that takes whatever object is passed in as the
+# identity when creating JWTs and converts it to a JSON serializable format.
+@jwt.user_identity_loader
+def user_identity_lookup(user):
+    return user.uuid
+
+# Handle invalid token error
+@jwt.invalid_token_loader
+def custom_invalid_token_callback(reason):
+    return jsonify({"error": "invalid_token", "message": reason}), 401
+
+# Handle revoked token error
+@jwt.revoked_token_loader
+def custom_revoked_token_callback(jwt_header, jwt_payload):
+    return jsonify({"error": "revoked_token", "message": "Please log in again"}), 401
+
+# Register a callback function that loads a user from your database whenever
+# a protected route is accessed. This should return any python object on a
+# successful lookup, or None if the lookup failed for any reason (for example
+# if the user has been deleted from the database).
+@jwt.user_lookup_loader
+def user_lookup_callback(_jwt_header, jwt_data):
+    from application.models.user import User
+    identity = jwt_data["sub"]
+    return User.query.filter_by(uuid=identity).one_or_none()
+
+# Register a callback function that loads when access and refresh token
+# is expired
+@jwt.expired_token_loader
+def expired_token_callback(jwt_header, jwt_payload):
+    token_type = jwt_payload["type"]
+    if token_type == "access":
+        return jsonify({
+            "message": "The access token has expired. Please refresh your token.",
+            "error": "access_token_expired"
+        }), 401
+    elif token_type == "refresh":
+        return jsonify({
+            "message": "The refresh token has expired. Please log in again.",
+            "error": "refresh_token_expired"
+        }), 401
+
+# generate a random unique string
+def random_string(length: int = 16) -> str :
+    letters = string.ascii_lowercase + string.ascii_uppercase + string.digits
+    return ''.join(random.choice(letters) for i in range(length))
+
+# determine the login type is username or password
+def determine_login_type(login_type: str) -> str:
+    if not re.match(r'[^@]+@[^@]+\.[^@]+', login_type):
+        return 'username'
+    else:
+        return 'email'
+
+

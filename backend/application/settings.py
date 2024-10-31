@@ -6,7 +6,8 @@ from application import (
     migrate,
     marshmallow,
     cors,
-    jwt
+    jwt,
+    mail
 )
 
 
@@ -44,6 +45,7 @@ def initialize_plugins(app):
     marshmallow.init_app(app)
     cors.init_app(app, origins=Config.ALLOWED_ORIGINS.split(','))
     jwt.init_app(app)
+    mail.init_app(app)
 
 
 # import all the models here
@@ -54,7 +56,8 @@ def import_models():
         theme,
         snap,
         user,
-        jwt_blocked_token
+        jwt_blocked_token,
+        password_reset_token
     )
 
 # import all the schemas here
@@ -80,12 +83,13 @@ def import_resources():
     )
 
 
-# initialize the flask app and setup the configs
+# initialize the flask app and set up the configs
 def initialize_flask_app(config_class):
     # Initialize the core application.
     app = Flask(
         __name__,
-        instance_relative_config=False
+        instance_relative_config=False,
+        template_folder=Config.TEMPLATES_FOLDER
     )
     app.config.from_object(f'config.{config_class}')
     return app

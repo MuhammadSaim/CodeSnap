@@ -15,6 +15,7 @@ class UserSchema(SQLAlchemySchema):
     username = fields.String(required=True)
     name = fields.String(required=True)
     email = fields.String(required=True)
+    email_verified_at = fields.String(dump_only=True)
     password = fields.String(required=True, load_only=True)
     confirm_password = fields.String(required=True, load_only=True)
 

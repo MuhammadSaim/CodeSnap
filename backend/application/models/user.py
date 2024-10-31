@@ -1,9 +1,7 @@
 from application import db
-from typing import Tuple, Optional
+from typing import Optional
 from application.helpers.general_helpers import (
-    create_password_hash,
-    verify_password,
-    get_uuid_for_user
+    create_password_hash
 )
 
 class User(db.Model):
@@ -37,6 +35,18 @@ class User(db.Model):
         nullable=False
     )
 
+    email_verified_at = db.Column(
+        db.DateTime,
+        nullable=True,
+        default=None
+    )
+
+    remember_token = db.Column(
+        db.String(255),
+        nullable=True,
+        default=None
+    )
+
     password = db.Column(
         db.String(255),
         nullable=False
@@ -55,24 +65,25 @@ class User(db.Model):
     )
 
     
-    def __init__(self, username: str, name: str, email: str, password: str, uuid: str) -> None:
+    def __init__(self, username: str, name: str, email: str, password: str, uuid: str, remember_token: str) -> None:
         self.username = username
         self.email = email
         self.name = name
         self.password = password
         self.uuid = uuid
+        self.remember_token = remember_token
     
 
     # register a user
     @classmethod
-    def regsiter_user(cls, username: str, name: str, email: str, password: str, uuid: str) -> Optional['User']:
+    def register_user(cls, username: str, name: str, email: str, password: str, uuid: str, remember_token: str) -> Optional['User']:
             
         # get a hashed password
         password_hash = create_password_hash(password=password)
         
         
         # create a new user
-        new_user = cls(username=username, name=name, email=email, password=password_hash, uuid=uuid)        
+        new_user = cls(username=username, name=name, email=email, password=password_hash, uuid=uuid, remember_token=remember_token)
         db.session.add(new_user)
         db.session.commit()
         

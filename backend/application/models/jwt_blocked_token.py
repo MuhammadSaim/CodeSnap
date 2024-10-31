@@ -41,3 +41,15 @@ class JWTBlockedToken(db.Model):
         server_default=db.func.now(),
         nullable=False
     )
+
+    def __init__(self, user_id: int, jti: str, token_type: str):
+        self.user_id = user_id
+        self.jti = jti
+        self.type = token_type
+
+    @classmethod
+    def add_token(cls, user_id: int, jti: str, token_type: str):
+
+        new_token = cls(user_id, jti, token_type)
+        db.session.add(new_token)
+        db.session.commit()

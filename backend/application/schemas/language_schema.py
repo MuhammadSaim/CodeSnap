@@ -11,7 +11,7 @@ class LanguageSchema(SQLAlchemySchema):
     
     # define the exposing field
     id   = fields.Integer()
-    name = fields.Str(required=True)
+    name = fields.String(required=True)
     
 
 # define the single dump 

@@ -5,6 +5,7 @@ from sqlalchemy import MetaData
 from flask_marshmallow import Marshmallow
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
+from flask_mail import Mail
 
 # load the env file
 load_dotenv()
@@ -24,7 +25,7 @@ metadata = MetaData(naming_convention=convention)
 # initiate the SQLAlchemy and pass the metadata
 db = SQLAlchemy(metadata=metadata)
 
-# initiate the migrate
+# initiate migrate
 migrate = Migrate()
 
 # initiate marshmallow
@@ -36,8 +37,11 @@ cors = CORS()
 # initiate JWT
 jwt = JWTManager()
 
+# initiate flask mail
+mail = Mail()
 
-# a function load all the applictaion parts
+
+# a function load all the application parts
 # plugins, models and blueprints
 def create_app(config_class='Config'):
     from application.settings import (

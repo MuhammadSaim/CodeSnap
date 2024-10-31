@@ -10,6 +10,8 @@ class Config:
     FLASK_APP = environ.get('FLASK_APP')
     FLASK_DEBUG = environ.get('FLASK_DEBUG')
 
+    TEMPLATES_FOLDER='views'
+
     BASE_DIR = os.path.abspath(os.path.dirname(__file__))
     
     ALLOWED_ORIGINS = environ.get('ALLOWED_ORIGINS')
@@ -41,7 +43,18 @@ class Config:
             refresh_token_expires
         ) if refresh_token_expires is not None else 30
     )
-    
+
+    # Email configurations
+    MAIL_SERVER = environ.get('MAIL_SERVER')
+    MAIL_PORT = int(environ.get('MAIL_PORT'))
+    MAIL_USE_TLS = bool(environ.get('MAIL_USE_TLS'))
+    MAIL_USERNAME = environ.get('MAIL_USERNAME')
+    MAIL_PASSWORD = environ.get('MAIL_PASSWORD')
+    MAIL_DEFAULT_SENDER = environ.get('MAIL_DEFAULT_SENDER')
+
+    # FRONTEND urls
+    FRONTEND_URL = 'https://localhost:3000/auth/reset-password'
+
 
 # Config for the Test environment
 class TestConfig(Config):
