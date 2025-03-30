@@ -1,18 +1,19 @@
-# Contributor Covenant Code of Conduct
+# CONTRIBUTORS CODE OF CONDUCT
 
-## Our Pledge
+## A. Our Pledge
 
-We as members, contributors, and leaders pledge to make participation in our
-community a harassment-free experience for everyone, regardless of age, body
-size, visible or invisible disability, ethnicity, sex characteristics, gender
-identity and expression, level of experience, education, socio-economic status,
-nationality, personal appearance, race, religion, or sexual identity
-and orientation.
+As members, contributors, and leaders, we pledge to foster a welcoming and
+inclusive environment where everyone can participate free from harassment.
+We are committed to ensuring that all individuals, regardless of age, body size,
+visible or invisible disabilities, ethnicity, sex characteristics, gender identity
+and expression, level of experience, education, socio-economic status, nationality,
+personal appearance, race, religion, or sexual orientation, feel safe, respected, 
+and valued in our community.
 
-We pledge to act and interact in ways that contribute to an open, welcoming,
-diverse, inclusive, and healthy community.
+We further pledge to act and interact in ways that promote openness, celebrate diversity,
+and nurture a healthy, inclusive, and collaborative community for all.
 
-## Our Standards
+## B. Our Standards
 
 Examples of behavior that contributes to a positive environment for our
 community include:
@@ -25,18 +26,20 @@ community include:
 * Focusing on what is best not just for us as individuals, but for the
   overall community
 
-Examples of unacceptable behavior include:
+ EXAMPLES OF UNACCEPTABLE BEHAVIOR INCLUDE:
 
-* The use of sexualized language or imagery, and sexual attention or
-  advances of any kind
-* Trolling, insulting or derogatory comments, and personal or political attacks
-* Public or private harassment
-* Publishing others' private information, such as a physical or email
-  address, without their explicit permission
-* Other conduct which could reasonably be considered inappropriate in a
-  professional setting
+* Examples of unacceptable behavior include, but are not limited to:
 
-## Enforcement Responsibilities
+* The use of sexualized language, imagery, or any form of unwelcome sexual attention
+  or advances.
+* Engaging in trolling, making insulting, derogatory, or disrespectful comments, or
+  launching personal or political attacks.
+* Harassing others, whether publicly or privately.
+* Sharing private information about others, such as physical addresses, email addresses,
+  or other personal details, without their explicit consent.
+* Any other conduct that could reasonably be deemed inappropriate or unprofessional
+  in a respectful community setting.
+## C. Enforcement Responsibilities
 
 Community leaders are responsible for clarifying and enforcing our standards of
 acceptable behavior and will take appropriate and fair corrective action in
@@ -48,7 +51,7 @@ comments, commits, code, wiki edits, issues, and other contributions that are
 not aligned to this Code of Conduct, and will communicate reasons for moderation
 decisions when appropriate.
 
-## Scope
+## D. Scope
 
 This Code of Conduct applies within all community spaces, and also applies when
 an individual is officially representing the community in public spaces.
@@ -56,7 +59,7 @@ Examples of representing our community include using an official e-mail address,
 posting via an official social media account, or acting as an appointed
 representative at an online or offline event.
 
-## Enforcement
+## E. Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
 reported to the community leaders responsible for enforcement at
@@ -66,7 +69,7 @@ All complaints will be reviewed and investigated promptly and fairly.
 All community leaders are obligated to respect the privacy and security of the
 reporter of any incident.
 
-## Enforcement Guidelines
+## F. Enforcement Guidelines
 
 Community leaders will follow these Community Impact Guidelines in determining
 the consequences for any action they deem in violation of this Code of Conduct:
@@ -105,14 +108,15 @@ Violating these terms may lead to a permanent ban.
 
 ### 4. Permanent Ban
 
-**Community Impact**: Demonstrating a pattern of violation of community
-standards, including sustained inappropriate behavior,  harassment of an
-individual, or aggression toward or disparagement of classes of individuals.
+**Community Impact**: Repeated or severe violations of community standards,
+including persistent inappropriate behavior, targeted harassment of an individual,
+or acts of aggression or disparagement toward groups of individuals, will not be tolerated.
+Such actions undermine the safety, inclusivity, and integrity of our community.
 
-**Consequence**: A permanent ban from any sort of public interaction within
-the community.
+**Consequence**: Individuals who engage in such behavior will face a permanent ban from all
+forms of public interaction within the community.
 
-## Attribution
+## G. Attribution
 
 This Code of Conduct is adapted from the [Contributor Covenant][homepage],
 version 2.0, available at
