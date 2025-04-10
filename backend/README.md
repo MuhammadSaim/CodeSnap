@@ -57,4 +57,8 @@ flask seeders all
 7. Run the flask app
 ```shell
 flask run
-```
+
+### Note
+```The above configurations can only work if you device fully meets the standard of the system. That means your 
+processor, ram, and storage show be more than enough to avoid failure in operation.
+Seek for installation guidance if you face challenges while installing the system.```
