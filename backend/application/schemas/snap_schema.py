@@ -36,7 +36,7 @@ class SnapSchema(SQLAlchemySchema):
     
     # validate the base64
     @validates('snap')
-    def validate_snap(self, value):
+    def validate_snap(self, value, **kwargs):
         if not validate_base64_image(value):
             raise ValidationError("Invalid base64 image string.")
     
